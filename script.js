@@ -41,6 +41,7 @@ function generatePassword() {
   let userChoices = []
   let possibilities = []
   let finalPassword = []
+  let possibility = [possibilities]
   if (userAnswer.islowerCase) {
     possibilities = possibilities.concat(lowerArr)
     userChoices.push (randomizer (lowerArr)) 
@@ -56,19 +57,25 @@ function generatePassword() {
   if (userAnswer.isspecialChar) {
     possibilities = possibilities.concat(specialArr)
     userChoices.push (randomizer (specialArr)) 
-    
   }
+
   console.log(userChoices);
-  for (let i = 0; i < userAnswer.length; i++) {
-    let possibility = [possibilities] //create new variable for a new array, randomize on other side possibilities....push possibility into result / finalPassword
+
+if (userAnswer) {
+   for (let i = 0; i < userAnswer.length; i++) {
+    //create new variable for a new array, randomize on other side possibilities....push possibility into result / finalPassword
     finalPassword [i] = possibility [i]
     finalPassword.join ("")
-  }
-  for (let i = 0; i < userChoices.length; i++) {
-  finalPassword [i] = userChoices [i]}
-  finalPassword.join ("")
 }
+  }
 
+  if (userChoices) {
+    for (let i = 0; i < userChoices.length; i++) {
+  finalPassword [i] = userChoices [i]
+  finalPassword.join ("")}
+  }
+  
+}
 
 function randomizer(arr) {
     var randomIndex = Math.floor(Math.random() * arr.length);
