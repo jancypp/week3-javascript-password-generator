@@ -38,8 +38,43 @@ function writePassword() {
 //taking the answers to process a password/
 function generatePassword() {
   let userAnswer = userInput()
+  let userChoices = []
+  let possibilities = []
+  let finalPassword = []
+  if (userAnswer.islowerCase) {
+    possibilities = possibilities.concat(lowerArr)
+    userChoices.push (randomizer (lowerArr)) 
+  }
+  if (userAnswer.isupperCase) {
+    possibilities = possibilities.concat(upperArr)
+    userChoices.push (randomizer (upperArr)) 
+  }
+  if (userAnswer.isnumeric) {
+    possibilities = possibilities.concat(numberArr)
+    userChoices.push (randomizer (numberArr)) 
+  }
+  if (userAnswer.isspecialChar) {
+    possibilities = possibilities.concat(specialArr)
+    userChoices.push (randomizer (specialArr)) 
+    
+  }
+  console.log(userChoices);
+  for (let i = 0; i < userAnswer.length; i++) {
+    let possibility = [possibilities] //create new variable for a new array, randomize on other side possibilities....push possibility into result / finalPassword
+    finalPassword [i] = possibility [i]
+    finalPassword.join ("")
+  }
+  for (let i = 0; i < userChoices.length; i++) {
+  finalPassword [i] = userChoices [i]}
+  finalPassword.join ("")
 }
 
+
+function randomizer(arr) {
+    var randomIndex = Math.floor(Math.random() * arr.length);
+    var randomPassword = arr[randomIndex];
+    return randomPassword
+}
 
 // User Input - How many characters would you like your password to contain? Confirms for each character type
 function userInput() {
@@ -65,28 +100,8 @@ function userInput() {
   }
   return userOptions;
 }
-let userChoices = []
-if (lowerArr === true) {
-  userChoices = userChoices.concat(lowerArr)
-}
-  userChoices = userChoices.concat(numberArr)
-  userChoices = userChoices.concat(upperArr)
-  userChoices = userChoices.concat(specialArr)
 
 
-  console.log(userChoices);
-
-  // let password = ""; //what does the empty string do? 
-
-  //passing the data from the userInput, left-side is static and the property, the right-side in the value (in this case it's a variable).
-  
-
-
-for (let index = 0; index < password.length; index++) {
-  var randomIndex = Math.floor(Math.random() * userChoices.length);
-  password = password + userChoices[randomIndex];
-  
-}
 // starpasswordode Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
