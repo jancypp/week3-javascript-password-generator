@@ -43,45 +43,39 @@ function generatePassword() {
   let finalPassword = []
   let possibility = [possibilities]
   if (userAnswer.islowerCase) {
-    possibilities = possibilities.concat(lowerArr)
-    userChoices.push (randomizer (lowerArr)) 
+    possibilities = possibilities.concat(lowerArr);
+    userChoices.push (lowerArr);
   }
+  
   if (userAnswer.isupperCase) {
     possibilities = possibilities.concat(upperArr)
-    userChoices.push (randomizer (upperArr)) 
+    userChoices.push (upperArr) 
   }
   if (userAnswer.isnumeric) {
     possibilities = possibilities.concat(numberArr)
-    userChoices.push (randomizer (numberArr)) 
+    userChoices.push (numberArr) 
   }
   if (userAnswer.isspecialChar) {
     possibilities = possibilities.concat(specialArr)
-    userChoices.push (randomizer (specialArr)) 
+    userChoices.push (specialArr) 
   }
 
   console.log(userChoices);
 
-if (userAnswer) {
-   for (let i = 0; i < userAnswer.length; i++) {
-    //create new variable for a new array, randomize on other side possibilities....push possibility into result / finalPassword
-    finalPassword [i] = possibility [i]
-    finalPassword.join ("")
-}
+  //randomizes the password output based on the user's answers
+  if (userAnswer) {
+    for (let i = 0; i < userAnswer.length; i++) {
+      finalPassword.push(
+        possibilities[Math.floor(Math.random() * possibilities.length)]
+      );
+      finalPassword.join("");
+    }
   }
 
-  if (userChoices) {
-    for (let i = 0; i < userChoices.length; i++) {
-  finalPassword [i] = userChoices [i]
-  finalPassword.join ("")}
-  }
-  
+  return finalPassword.join(""); 
 }
 
-function randomizer(arr) {
-    var randomIndex = Math.floor(Math.random() * arr.length);
-    var randomPassword = arr[randomIndex];
-    return randomPassword
-}
+
 
 // User Input - How many characters would you like your password to contain? Confirms for each character type
 function userInput() {
